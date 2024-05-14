@@ -1,5 +1,4 @@
 import React from "react";
-import {City_List} from '../components/config.js/CitiesList';
 
 const Signup = () => {
   return (
@@ -107,7 +106,6 @@ const Signup = () => {
               className="rounded-md font-abc w-72 mt-2.5 text-base px-2 py-1.5 text-black"
             >
               <option
-                value={City_List}
                 className="block text-base mb-1 font-abc text-black"
               ></option>
               <option
