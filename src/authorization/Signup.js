@@ -1,155 +1,162 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { State_City_data } from "../constants/Stateandcitylist";
 
 const Signup = () => {
-  return (
-    <div className="flex justify-center items-center bg-slate-800 h-screen text-white">
-      <div className="w-1/2 p-6 shadow-mg bg-gray-500 rounded-md text-2xl">
-        <h1 className="text-center text-4xl mb-5 font-medium font-abc">
-          Sign Up
-        </h1>
-        <div className="grid grid-cols-2">
-          <div className="mt-3">
-            <label for="firstname" className="block text-base mb-1 font-abc">
-              First Name
-            </label>
-            <input
-              type="text"
-              id="firstname"
-              className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
-              required
-            />
-          </div>
-          <div className="mt-3">
-            <label for="lastname" className="block text-base mb-1 font-abc">
-              Last Name
-            </label>
-            <input
-              type="text"
-              id="lastname"
-              className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
-              required
-            />
-          </div>
-          <div className="mt-3">
-            <label for="email" className="block text-base mb-1 font-abc">
-              Contact No
-            </label>
-            <input
-              type="tel"
-              id="email"
-              className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
-              required
-            />
-          </div>
-          <div className="mt-3">
-            <label for="number" className="block text-base mb-1 font-abc">
-              Email
-            </label>
-            <input
-              type="text"
-              id="email"
-              className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
-              required
-            />
-          </div>
-          <div className="mt-3">
-            <label for="dob" className="block text-base mb-1 font-abc">
-              Date of Birth
-            </label>
-            <input
-              type="date"
-              id="dob"
-              className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
-              required
-            />
-          </div>
-          <div className="mt-3">
-            <label for="gender" className="block text-base font-abc">
-              Choose a gender:
-            </label>
-            <select
-              name="gender"
-              id="gender"
-              className="rounded-md font-abc w-72 mt-2.5 text-base px-2 py-1.5 text-black"
-            >
-              <option
-                value="None"
-                className="block text-base mb-1 font-abc text-black"
-              ></option>
-              <option
-                value="Male"
-                className="block text-base mb-1 font-abc text-black"
-              >
-                Male
-              </option>
-              <option
-                value="Female"
-                className="block text-base mb-1 font-abc text-black"
-              >
-                Female
-              </option>
-              <option
-                value="Other"
-                className="block text-base mb-1 font-abc text-black"
-              >
-                Other
-              </option>
-            </select>
-          </div>
-          <div className="mt-3">
-            <label for="city" className="block text-base font-abc">
-              Choose your city:
-            </label>
-            <select
-              name="gender"
-              id="gender"
-              className="rounded-md font-abc w-72 mt-2.5 text-base px-2 py-1.5 text-black"
-            >
-              <option
-                className="block text-base mb-1 font-abc text-black"
-              ></option>
-              <option
-                value="Male"
-                className="block text-base mb-1 font-abc text-black"
-              >
-                Male
-              </option>
-              <option
-                value="Female"
-                className="block text-base mb-1 font-abc text-black"
-              >
-                Female
-              </option>
-              <option
-                value="Other"
-                className="block text-base mb-1 font-abc text-black"
-              >
-                Other
-              </option>
-            </select>
-          </div>
-          <div className="mt-3">
-            <label for="pwd" className="block text-base mb-1 font-abc">
-              Password
-            </label>
-            <input
-              type="password"
-              id="pwd"
-              className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
-            />
-          </div>
+  const [state, setState] = useState([]);
+  const [city, setCity] = useState([]);
 
-          <div className="text-center">
-            <button
-              type="submit"
-              className="mt-3 p-2 font-abc bg-slate-800 rounded-md text-sm"
-            >
-              Submit
-            </button>
+  useEffect(() => {
+    setState(Object.keys(State_City_data));
+  }, []);
+
+   const onSelectState = (stateName) => {
+    console.log(stateName, State_City_data[stateName]);
+      setCity(State_City_data[stateName]);
+  }
+  return (
+    <>
+    {console.log(state)}
+      <div className="flex justify-center items-center bg-slate-800 h-screen text-white">
+        <div className="w-1/2 p-6 shadow-mg bg-gray-500 rounded-md text-2xl">
+          <h1 className="text-center text-4xl mb-5 font-medium font-abc">
+            Sign Up
+          </h1>
+          <div className="grid grid-cols-2">
+            <div className="mt-3">
+              <label
+                htmlFor="firstname"
+                className="block text-base mb-1 font-abc"
+              >
+                First Name
+              </label>
+              <input
+                type="text"
+                id="firstname"
+                className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
+                required
+              />
+            </div>
+            <div className="mt-3">
+              <label
+                htmlFor="lastname"
+                className="block text-base mb-1 font-abc"
+              >
+                Last Name
+              </label>
+              <input
+                type="text"
+                id="lastname"
+                className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
+                required
+              />
+            </div>
+            <div className="mt-3">
+              <label htmlFor="email" className="block text-base mb-1 font-abc">
+                Contact No
+              </label>
+              <input
+                type="tel"
+                id="number"
+                className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
+                required
+              />
+            </div>
+            <div className="mt-3">
+              <label htmlFor="number" className="block text-base mb-1 font-abc">
+                Email
+              </label>
+              <input
+                type="text"
+                id="email"
+                className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
+                required
+              />
+            </div>
+            <div className="mt-3">
+              <label htmlFor="dob" className="block text-base mb-1 font-abc">
+                Date of Birth
+              </label>
+              <input
+                type="date"
+                id="dob"
+                className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
+                required
+              />
+            </div>
+            <div className="mt-3">
+              <div>Gender:</div>
+              <div>
+                <input id="gender" type="radio" name="male" />
+                <label htmlFor="setB_male">Male</label>
+                <input id="gender" type="radio" name="female" />
+                <label htmlFor="setB_female">Female</label>
+                <input id="gender" type="radio" name="other" />
+                <label htmlFor="setB_both">Other</label>
+              </div>
+            </div>
+            <div className="mt-3">
+              <label htmlFor="state" className="block text-base font-abc">
+                Choose your state:
+              </label>
+              <select
+                name="state"
+                id="state"
+                className="rounded-md font-abc w-72 mt-2.5 text-base px-2 py-1.5 text-black"
+                onChange={e => onSelectState(e.target.value)}
+              >
+                {state.map((item) => (
+                  <option
+                    value={item} key={item}
+                    className="block text-base mb-1 font-abc text-black"
+                  >
+                    {item}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="mt-3">
+              <label htmlFor="city" className="block text-base font-abc">
+                Choose your city:
+              </label>
+              <select
+                name="city"
+                id="city"
+                className="rounded-md font-abc w-72 mt-2.5 text-base px-2 py-1.5 text-black"
+              >
+                {city.map((item)=>
+                <option
+                value={item} key={item}
+                className="block text-base mb-1 font-abc text-black"
+              >
+                {item}
+              </option>
+                )}
+                
+              </select>
+            </div>
+            <div className="mt-3">
+              <label htmlFor="pwd" className="block text-base mb-1 font-abc">
+                Password
+              </label>
+              <input
+                type="password"
+                id="pwd"
+                className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
+              />
+            </div>
+
+            <div className="text-center">
+              <button
+                type="submit"
+                className="mt-3 p-2 font-abc bg-slate-800 rounded-md text-sm"
+              >
+                Submit
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
