@@ -25,16 +25,10 @@
   ],
   "user": [
     {
-      "id": "1",
-      "name": "Harshu",
-      "email": "harshit@gmail.com",
-      "phone": 7415337376
-    },
-    {
+      "id": "d0ce",
       "name": "Ranjana",
       "email": "ranjana0807@gmail.com",
-      "phone": 7987104522,
-      "id": "3"
+      "phone": 7987104522
     }
   ]
 }

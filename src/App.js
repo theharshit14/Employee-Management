@@ -2,7 +2,7 @@
 import React from 'react';
 import './App.css';
 import Signup from './authorization/Signup';
-import Signin from './authorization/Signin';
+// import Signin from './authorization/Signin';
 
 
 
@@ -11,7 +11,7 @@ function App() {
   return (
     <div>
       <Signup/>
-      <Signin/>
+      {/* <Signin/> */}
     </div>
   );
 }
