@@ -158,6 +158,7 @@ export const State_City_data = {
     "Madhya Pradesh": [
       "Indore",
       "Bhopal",
+      "Dewas",
       "Jabalpur",
       "Gwalior",
       "Ujjain",
