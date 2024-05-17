@@ -6,14 +6,12 @@ const Signup = () => {
   const [state, setState] = useState([]);
   const [city, setCity] = useState([]);
   const [userInfo, setUserInfo] = useState();
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [selectedDate, setSelectedDate] = useState(null);
 
-  const { register, handleSubmit, errors } = useForm();
-
-  const onSubmit = (data) => {
-    setUserInfo(data);
-    console.log(data);
+  const handleDateChange = (e) => {
+    setSelectedDate(new Date(e.target.value));
   };
-  console.log(errors);
 
   useEffect(() => {
     setState(Object.keys(State_City_data));
@@ -23,13 +21,19 @@ const Signup = () => {
     console.log(stateName, State_City_data[stateName]);
     setCity(State_City_data[stateName]);
   };
+
+  const onSubmit = (data) => {
+    setUserInfo(data);
+    // console.log(data);
+  };
   return (
     <>
-      {/* {console.log(state)} */}
-      <div className="flex justify-center items-center bg-slate-800 h-screen text-white">
-        <div className="w-1/2 p-6 shadow-mg bg-gray-500 rounded-md text-2xl">
-          <pre>{JSON.stringify(userInfo, undefined, 2)}</pre>
-          <form onSubmit={handleSubmit(onSubmit)}>
+      
+      <form onSubmit={handleSubmit(onSubmit)}>
+      <pre>{JSON.stringify(userInfo)}</pre>
+      <pre>{console.log(errors)}</pre>
+        <div className="flex justify-center items-center bg-slate-800 h-screen text-white">
+          <div className="w-1/2 p-6 shadow-mg bg-gray-500 rounded-md text-2xl">
             <h1 className="text-center text-4xl mb-5 font-medium font-abc">
               Sign Up
             </h1>
@@ -45,11 +49,11 @@ const Signup = () => {
                   type="text"
                   id="firstname"
                   placeholder="Enter First Name"
+                  {...register("firstname", { required: true, minLength: 3 })}
                   className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
-                  {...register("firstName", { required: "First Name is required", minLength: 3 })}
                 />
+                {errors.firstname && <p>Please enter your First Name</p>}
               </div>
-              <p>{errors?.firstname?.message}</p>
               <div className="mt-3">
                 <label
                   htmlFor="lastname"
@@ -61,9 +65,10 @@ const Signup = () => {
                   type="text"
                   id="lastname"
                   placeholder="Enter Last Name"
+                  {...register("lastname", { required: true, minLength: 3 })}
                   className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
-                  {...register("lastName", { required: "Last Name is required", minLength: 3 })}
                 />
+                {errors.lastname && <p>Please enter your Last Name</p>}
               </div>
               <div className="mt-3">
                 <label
@@ -76,9 +81,10 @@ const Signup = () => {
                   type="tel"
                   id="number"
                   placeholder="Enter your contact number"
+                  {...register("number", {required: true, minLength: 10, maxLength: 15})}
                   className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
-                  {...register("number", { required: "Contact Number is required", min: 10, max: 15 })}
                 />
+                {errors.number && <p>Please check the Number</p>}
               </div>
               <div className="mt-3">
                 <label
@@ -91,9 +97,10 @@ const Signup = () => {
                   type="text"
                   id="email"
                   placeholder="Enter your email"
+                  {...register("email", {required: true, pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i})}
                   className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
-                  {...register("email", { required: "Email is required", pattern: /^[A-Z0-9. _%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i })}
                 />
+                {errors.email && <p>Please enter your email</p>}
               </div>
               <div className="mt-3">
                 <label htmlFor="dob" className="block text-base mb-1 font-abc">
@@ -103,25 +110,47 @@ const Signup = () => {
                   type="date"
                   id="dob"
                   placeholder="Enter your birth date"
+                  {...register("dob", {required: true})}
                   className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
-                  {...register("dob", { valueAsDate: true})}
+                  onChange={handleDateChange}
+                  max={new Date().toISOString().split("T")[0]}
                 />
+                {errors.dob && <p>Please enter your birth date</p>}
               </div>
               <div className="mt-3">
                 <div className="block text-base font-abc">Gender:</div>
                 <div className="block text-base font-abc my-3">
-                  <input {...register("radio")} id="gender" type="radio" name="gender" value="male"/>
+                  <input
+                    id="gender"
+                    type="radio"
+                    name="gender"
+                    value="male"
+                    {...register("gender", {required: true})}
+                  />
                   <label htmlFor="gender" className="text-base font-abc mx-3">
                     Male
                   </label>
-                  <input {...register("radio")} id="gender" type="radio" name="gender" value="female"/>
+                  <input
+                    id="gender"
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    {...register("gender", {required: true})}
+                  />
                   <label htmlFor="gender" className="text-base font-abc mx-3">
                     Female
                   </label>
-                  <input {...register("radio")} id="gender" type="radio" name="gender" value="other"/>
+                  <input
+                    id="gender"
+                    type="radio"
+                    name="gender"
+                    value="other"
+                    {...register("gender", {required: true})}
+                  />
                   <label htmlFor="gender" className="text-base font-abc mx-3">
                     Other
                   </label>
+                  {errors.gender && <p>Please select your gender</p>}
                 </div>
               </div>
               <div className="mt-3">
@@ -131,8 +160,9 @@ const Signup = () => {
                 <select
                   name="state"
                   id="state"
+                  {...register("state", {required: true})}
                   className="rounded-md font-abc w-72 mt-2.5 text-base px-2 py-1.5 text-black"
-                  onChange={(e) => onSelectState(e.target.value)} {...register("state", {required:"Please select the state"})}
+                  onChange={(e) => onSelectState(e.target.value)}
                 >
                   {state.map((item) => (
                     <option
@@ -144,6 +174,7 @@ const Signup = () => {
                     </option>
                   ))}
                 </select>
+                {errors.state && <p>Please select your state</p>}
               </div>
               <div className="mt-3">
                 <label htmlFor="city" className="block text-base font-abc">
@@ -152,7 +183,8 @@ const Signup = () => {
                 <select
                   name="city"
                   id="city"
-                  className="rounded-md font-abc w-72 mt-2.5 text-base px-2 py-1.5 text-black" {...register("city", {required:"Please select the city"})}
+                  {...register("city", {required: true})}
+                  className="rounded-md font-abc w-72 mt-2.5 text-base px-2 py-1.5 text-black"
                 >
                   {city.map((item) => (
                     <option
@@ -164,6 +196,7 @@ const Signup = () => {
                     </option>
                   ))}
                 </select>
+                {errors.city && <p>Please enter your city</p>}
               </div>
               <div className="mt-3">
                 <label htmlFor="pwd" className="block text-base mb-1 font-abc">
@@ -173,21 +206,26 @@ const Signup = () => {
                   type="password"
                   id="pwd"
                   placeholder="Enter your password"
+                  {...register("pwd", {required: true})}
                   className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
-                  {...register}
                 />
+                {errors.pwd && <p>Please enter your password</p>}
               </div>
               <div className="mt-3">
-                <label htmlFor="cnfpwd" className="block text-base mb-1 font-abc">
+                <label
+                  htmlFor="cnfpwd"
+                  className="block text-base mb-1 font-abc"
+                >
                   Confirm Password
                 </label>
                 <input
                   type="password"
                   id="cnfpwd"
                   placeholder="Enter your confirmed password"
+                  {...register("cnfpwd", {required: true})}
                   className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
-                  {...register}
                 />
+                {errors.cnfpwd && <p>Please enter your confirm password</p>}
               </div>
             </div>
             <div className="mt-3">
@@ -203,9 +241,9 @@ const Signup = () => {
                 Submit
               </button>
             </div>
-          </form>
+          </div>
         </div>
-      </div>
+      </form>
     </>
   );
 };
