@@ -5,7 +5,10 @@ module.exports = {
     extend: {},
     fontFamily: {
       abc: ["Montserrat", "sans-serif"],
-    }
+    },
+    variants: {
+      opacity: ({ after }) => after(['disabled'])
+    },
   },
   plugins: [],
 }

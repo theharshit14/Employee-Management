@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { State_City_data } from "../constants/Stateandcitylist";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [state, setState] = useState([]);
   const [city, setCity] = useState([]);
   const [userInfo, setUserInfo] = useState();
-  // const [selectedState, setSelectedState] = useState('');
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate("/signin");
+  };
 
   const {
     register,
@@ -14,6 +21,20 @@ const Signup = () => {
     watch,
     formState: { errors },
   } = useForm();
+
+  const allFields = watch([
+    "frstname",
+    "lstname",
+    "number",
+    "dob",
+    "gender",
+    "state",
+    "city",
+    "email",
+    "password",
+    "confirmPassword"
+  ]);
+
   const [selectedDate, setSelectedDate] = useState(null);
 
   const password = watch("password");
@@ -33,9 +54,18 @@ const Signup = () => {
   };
 
   const onSubmit = (data) => {
-    setUserInfo(data);
-    // console.log(data);
+    // setUserInfo(data);
+    console.log(data);
   };
+
+  useEffect(() => {
+    const isAllFieldsFilled = allFields.every(field => field && field.trim() !== '');
+    const passwordsMatch = allFields[8] === allFields[9];
+    console.log(errors, 'This is the error');
+    setIsFormValid(isAllFieldsFilled);
+  }, [allFields]);
+  
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -188,7 +218,8 @@ const Signup = () => {
                   </p>
                 )}
               </div>
-              <div className="mt-3">
+              {city.length > 0 && 
+                <div className="mt-3">
                 <label htmlFor="city" className="block text-base font-abc">
                   City:
                 </label>
@@ -214,6 +245,8 @@ const Signup = () => {
                   </p>
                 )}
               </div>
+              }
+              
               <div className="mt-3">
                 <label htmlFor="email" className="block text-base font-abc">
                   Email
@@ -280,7 +313,8 @@ const Signup = () => {
             <div className="text-center">
               <button
                 type="submit"
-                className="mt-3 p-2 font-abc bg-cyan-600 hover:bg-cyan-300 rounded-md text-sm"
+                disabled={!isFormValid}
+                className= {`mt-3 p-2 font-abc ${!isFormValid ? 'disabled:opacity-50' : '' } bg-cyan-600 hover:bg-cyan-300 rounded-md text-sm`}
               >
                 Submit
               </button>
