@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { State_City_data } from "../constants/Stateandcitylist";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import authService from "../service/auth";
+
 
 const Signup = () => {
   const [state, setState] = useState([]);
@@ -56,6 +58,11 @@ const Signup = () => {
   const onSubmit = (data) => {
     // setUserInfo(data);
     console.log(data);
+      authService.postSignup(data).then((response)=>{
+        console.log(response);
+      }).catch((error)=>{
+        console.log('APIerror', error);
+      })
   };
 
   useEffect(() => {
@@ -307,13 +314,18 @@ const Signup = () => {
             </div>
             <div className="mt-3">
               <span className="block text-base font-abc">
-                <input type="checkbox" /> Accept all the terms and conditions
+                <input type="checkbox" id="chkbox" {...register ('chkbox', {required: true})}/> Accept all the terms and conditions
               </span>
+              {errors.chkbox && (
+                <p className="text-sm text-red-700 font-abc">
+                Please tick in checkbox
+              </p>
+              )}
             </div>
             <div className="text-center">
               <button
                 type="submit"
-                disabled={!isFormValid}
+                disabled={!isFormValid} onClick={handleButtonClick}
                 className= {`mt-3 p-2 font-abc ${!isFormValid ? 'disabled:opacity-50' : '' } bg-cyan-600 hover:bg-cyan-300 rounded-md text-sm`}
               >
                 Submit

@@ -25,10 +25,17 @@
   ],
   "user": [
     {
-      "id": "d0ce",
-      "name": "Ranjana",
-      "email": "ranjana0807@gmail.com",
-      "phone": 7987104522
+      "id": "c81f",
+      "frstname": "harshit",
+      "lstname": "Verma",
+      "number": "7878787878",
+      "dob": "2024-05-08",
+      "gender": "male",
+      "state": "Tripura",
+      "email": "test@gmail.com",
+      "password": "141195",
+      "confirmPassword": "141195",
+      "city": "Kailasahar"
     }
   ]
 }
