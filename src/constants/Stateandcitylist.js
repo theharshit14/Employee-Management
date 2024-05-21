@@ -208,7 +208,6 @@ export const State_City_data = {
       "Sabalgarh",
       "Umaria",
       "Porsa",
-      "Narsinghgarh",
       "Malaj Khand",
       "Sarangpur",
       "Mundi",

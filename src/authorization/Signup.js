@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { State_City_data } from "../constants/Stateandcitylist";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -8,14 +10,20 @@ import authService from "../service/auth";
 const Signup = () => {
   const [state, setState] = useState([]);
   const [city, setCity] = useState([]);
-  const [userInfo, setUserInfo] = useState();
   const [isFormValid, setIsFormValid] = useState(false);
 
   const navigate = useNavigate();
 
-  const handleButtonClick = () => {
+  const notify = () => {
+    toast.success("Account created successfully!", {
+      position: "top-center"
+    });
+  }
+
+  const handleButton = () => {
     navigate("/signin");
   };
+
 
   const {
     register,
@@ -56,7 +64,6 @@ const Signup = () => {
   };
 
   const onSubmit = (data) => {
-    // setUserInfo(data);
     console.log(data);
       authService.postSignup(data).then((response)=>{
         console.log(response);
@@ -68,7 +75,6 @@ const Signup = () => {
   useEffect(() => {
     const isAllFieldsFilled = allFields.every(field => field && field.trim() !== '');
     const passwordsMatch = allFields[8] === allFields[9];
-    console.log(errors, 'This is the error');
     setIsFormValid(isAllFieldsFilled);
   }, [allFields]);
   
@@ -76,8 +82,8 @@ const Signup = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <pre>{JSON.stringify(userInfo)}</pre>
-        <pre>{console.log(errors)}</pre>
+        {/* <pre>{JSON.stringify(userInfo)}</pre> */}
+        {/* <pre>{console.log(errors)}</pre> */}
         <div className="flex justify-center items-center bg-gradient-to-b from-cyan-700 to-cyan-400 h-screen text-brown">
           <div className="w-1/2 p-6 shadow-xl bg-blue-300 rounded-md text-2xl">
             <h1 className="text-center text-4xl mb-3 font-medium font-abc">
@@ -162,7 +168,6 @@ const Signup = () => {
                 <div className="block text-base font-abc">Gender:</div>
                 <div className="block text-base font-abc my-3">
                   <input
-                    id="gender"
                     type="radio"
                     name="gender"
                     value="male"
@@ -172,7 +177,6 @@ const Signup = () => {
                     Male
                   </label>
                   <input
-                    id="gender"
                     type="radio"
                     name="gender"
                     value="female"
@@ -182,7 +186,6 @@ const Signup = () => {
                     Female
                   </label>
                   <input
-                    id="gender"
                     type="radio"
                     name="gender"
                     value="other"
@@ -305,7 +308,7 @@ const Signup = () => {
                   })}
                   className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
                 />
-                {errors.confirmPassword && (
+                {errors.cnfpwd && (
                   <p className="text-sm text-red-700 font-abc">
                     Please enter your confirm password
                   </p>
@@ -325,7 +328,7 @@ const Signup = () => {
             <div className="text-center">
               <button
                 type="submit"
-                disabled={!isFormValid} onClick={handleButtonClick}
+                disabled={!isFormValid} onClick={notify}
                 className= {`mt-3 p-2 font-abc ${!isFormValid ? 'disabled:opacity-50' : '' } bg-cyan-600 hover:bg-cyan-300 rounded-md text-sm`}
               >
                 Submit
@@ -338,6 +341,7 @@ const Signup = () => {
               </button>
             </div>
           </div>
+          <ToastContainer />
         </div>
       </form>
     </>
