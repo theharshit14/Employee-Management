@@ -1,9 +1,10 @@
 import React from 'react';
+import '../App.css';
 
 const Signin = () => {
   return (
-    <div className="flex justify-center items-center bg-gradient-to-b from-cyan-700 to-cyan-400 h-screen text-black">
-      <div className="w-96 p-6 shadow-mg bg-blue-300 rounded-md text-2xl">
+    <div className="flex justify-center items-center main h-screen text-black">
+      <div className="w-96 p-6 shadow-mg main-container rounded-md text-2xl">
         <div>
         <h1 className="text-center text-4xl mb-5 font-medium font-abc">
           Sign In
@@ -14,7 +15,7 @@ const Signin = () => {
             </label>
             <input
               type="text"
-              id="email"
+              id="email" placeholder='Enter your email'
               className="rounded-md font-abc w-80 text-base px-2 py-1 text-black"
               required
             />
@@ -25,7 +26,7 @@ const Signin = () => {
             </label>
             <input
               type="password"
-              id="pwd"
+              id="pwd" placeholder='Enter your password'
               className="rounded-md font-abc w-80 text-base px-2 py-1 text-black"
             />
           </div>
@@ -34,7 +35,7 @@ const Signin = () => {
           <div className="text-center">
             <button
               type="submit"
-              className="mt-3 p-2 font-abc bg-cyan-600 hover:bg-cyan-300 rounded-md text-sm"
+              className="mt-3 p-2 font-abc my-button rounded-md text-sm"
             >
               Submit
             </button>

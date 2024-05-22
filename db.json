@@ -260,6 +260,62 @@
       "confirmPassword": "1411995",
       "chkbox": true,
       "city": "Thoubal"
+    },
+    {
+      "id": "1c31",
+      "frstname": "ayush",
+      "lstname": "Verma",
+      "number": "9898989899",
+      "dob": "1995-03-25",
+      "gender": "male",
+      "state": "Meghalaya",
+      "email": "vharshit4200@gmail.com",
+      "password": "1411995",
+      "confirmPassword": "1411995",
+      "chkbox": true,
+      "city": "Nongstoin"
+    },
+    {
+      "id": "56d9",
+      "frstname": "ayush",
+      "lstname": "Verma",
+      "number": "9898989899",
+      "dob": "1996-09-26",
+      "gender": "male",
+      "state": "Uttarakhand",
+      "email": "vharshit4200@gmail.com",
+      "password": "121211",
+      "confirmPassword": "121211",
+      "chkbox": true,
+      "city": "Pithoragarh"
+    },
+    {
+      "id": "819a",
+      "frstname": "ankit",
+      "lstname": "gaur",
+      "number": "9898989899",
+      "dob": "1985-11-15",
+      "gender": "male",
+      "state": "Gujarat",
+      "email": "test@gmail.com",
+      "password": "1411995",
+      "confirmPassword": "1411995",
+      "chkbox": true,
+      "city": "Navsari"
+    },
+    {
+      "id": "959f",
+      "frstname": "HARSHIT",
+      "lstname": "VERMA",
+      "number": "8585898985",
+      "dob": "1996-11-15",
+      "gender": "male",
+      "state": "Arunachal Pradesh",
+      "email": "vharshit4200@gmail.com",
+      "password": "1411995",
+      "confirmPassword": "1411995",
+      "chkbox": true,
+      "city": "Pasighat"
     }
   ]
 }

@@ -5,6 +5,7 @@ import { State_City_data } from "../constants/Stateandcitylist";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import authService from "../service/auth";
+import '../App.css';
 
 
 const Signup = () => {
@@ -13,17 +14,6 @@ const Signup = () => {
   const [isFormValid, setIsFormValid] = useState(false);
 
   const navigate = useNavigate();
-
-  const notify = () => {
-    toast.success("Account created successfully!", {
-      position: "top-center"
-    });
-  }
-
-  const handleButton = () => {
-    navigate("/signin");
-  };
-
 
   const {
     register,
@@ -66,6 +56,13 @@ const Signup = () => {
   const onSubmit = (data) => {
     console.log(data);
       authService.postSignup(data).then((response)=>{
+        toast.success("Account created successfully!", {
+          position: "bottom-right",
+          autoClose: 3000,
+        });
+        setTimeout(()=>{
+          navigate("/signin")
+        }, 3000);
         console.log(response);
       }).catch((error)=>{
         console.log('APIerror', error);
@@ -84,8 +81,8 @@ const Signup = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* <pre>{JSON.stringify(userInfo)}</pre> */}
         {/* <pre>{console.log(errors)}</pre> */}
-        <div className="flex justify-center items-center bg-gradient-to-b from-cyan-700 to-cyan-400 h-screen text-brown">
-          <div className="w-1/2 p-6 shadow-xl bg-blue-300 rounded-md text-2xl">
+        <div className="main flex justify-center items-center h-screen text-brown">
+          <div className="main-container w-1/2 p-6 shadow-xl rounded-md text-2xl">
             <h1 className="text-center text-4xl mb-3 font-medium font-abc">
               Sign Up
             </h1>
@@ -328,14 +325,14 @@ const Signup = () => {
             <div className="text-center">
               <button
                 type="submit"
-                disabled={!isFormValid} onClick={notify}
-                className= {`mt-3 p-2 font-abc ${!isFormValid ? 'disabled:opacity-50' : '' } bg-cyan-600 hover:bg-cyan-300 rounded-md text-sm`}
+                disabled={!isFormValid}
+                className= {`mt-3 p-2 font-abc ${!isFormValid ? 'disabled:opacity-50' : '' } my-button rounded-md text-sm`}
               >
                 Submit
               </button>
               <button
                 type="reset"
-                className="mt-3 mx-2 p-2 font-abc bg-cyan-600 hover:bg-cyan-300 rounded-md text-sm"
+                className="mt-3 mx-2 p-2 font-abc reset-button rounded-md text-sm"
               >
                 Reset
               </button>
