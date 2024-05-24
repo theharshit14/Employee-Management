@@ -1,8 +1,15 @@
 import axios from "axios";
+import { API_URL } from "../env/api_url_constant";
+// import { MdEmail } from "react-icons/md";
 
 const authService = {
-    postSignup : function postSignup (payload) {
-        return axios.post("http://localhost:3001/user", payload)
+    postSignup : (payload) => {
+        return axios.post(`${API_URL}user`, payload);
+    },
+    signin : (payload) => {
+        return axios.get(`${API_URL}user`, {params:{
+            email: payload.email
+        }});
     }
 }
 

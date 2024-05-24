@@ -313,7 +313,7 @@ const Signup = () => {
               </div>
             </div>
             <div className="mt-3">
-              <span className="block text-base font-abc">
+              <span className="block text-base font-abc font-semibold">
                 <input type="checkbox" id="chkbox" {...register ('chkbox', {required: true})}/> Accept all the terms and conditions
               </span>
               {errors.chkbox && (
