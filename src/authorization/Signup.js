@@ -61,7 +61,7 @@ const Signup = () => {
           autoClose: 3000,
         });
         setTimeout(()=>{
-          navigate("/signin")
+          navigate("/")
         }, 3000);
         console.log(response);
       }).catch((error)=>{

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { API_URL } from "../env/api_url_constant";
-// import { MdEmail } from "react-icons/md";
+
 
 const authService = {
     postSignup : (payload) => {

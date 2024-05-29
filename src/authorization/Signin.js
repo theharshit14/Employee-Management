@@ -1,6 +1,10 @@
-import { React, useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import authService from "../service/auth";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+
 import "../App.css";
 
 const Signin = () => {
@@ -10,20 +14,42 @@ const Signin = () => {
     formState: { errors },
   } = useForm();
 
+  const navigate = useNavigate();
+
   const onSubmit = (data) => {
     console.log(data);
     authService
       .signin(data)
       .then((response) => {
-        console.log("login response",response);
-        // 1. if response.data is empty then throw an error "this email doesn't exist, please sign up"
-        // 2. if response.data of 0 position then we have to take zeroth value.
-        // 3. if email and password are exist in our data then it will be redirected to dashboard in toast message. 
-        // 4. the data has to store in session storage.
-        // 5. if password is not matched then either email or password is incorrect.
+        console.log("API response", response.data);
+        console.log("User data", data);
+        if (response.data.length === 0) {
+          toast.error("This email doesn't exist, please Sign up!", {
+            autoClose: 2000,
+          });
+          return;
+        }
+        if (response.data[0].password !== data.password) {
+          toast.error("Email or password is incorrect!", {
+            autoClose: 2000,
+          });
+          return;
+        }
+
+        toast.success("LoggedIn Successfully!", {
+          position: "bottom-right",
+          autoClose: 3000,
+        })
+          
+        sessionStorage.setItem("userData", JSON.stringify(response.data[0]));
+
+        setTimeout(()=>{
+          navigate("/dashboard");
+        }, 3000)
+
       })
       .catch((error) => {
-        console.log("login error",error);
+        console.log("login error", error);
       });
   };
 
@@ -85,7 +111,7 @@ const Signin = () => {
                 Forgot Password?
               </a>
               <a
-                href="/"
+                href="/signup"
                 className="block text-base mb-1 mr-5 font-abc font-semibold hover:underline mt-3"
               >
                 Sign Up
@@ -102,6 +128,7 @@ const Signin = () => {
             </div>
           </div>
         </div>
+        <ToastContainer />
       </div>
     </form>
   );
