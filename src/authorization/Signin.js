@@ -4,7 +4,6 @@ import authService from "../service/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-
 import "../App.css";
 
 const Signin = () => {
@@ -71,16 +70,19 @@ const Signin = () => {
                 placeholder="Enter your email"
                 {...register("email", {
                   required: true,
-                  pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Invalid email address",
+                  },
                 })}
                 className="rounded-md font-abc w-80 text-base px-2 py-1 text-black"
                 required
               />
               {errors.email && (
-                <p className="text-sm text-red-700 font-abc">
-                  Please enter your email
-                </p>
-              )}
+                    <p className="text-sm text-red-700 font-abc">
+                      {errors.email.message}
+                    </p>
+                  )}
             </div>
             <div className="mt-3">
               <label htmlFor="pwd" className="block text-base font-abc">
@@ -91,21 +93,27 @@ const Signin = () => {
                 id="pwd"
                 placeholder="Enter your password"
                 {...register("password", {
-                  required: true,
-                  minLength: 6,
-                  maxLength: 8,
+                  required: "Please enter your password",
+                      minLength: {
+                        value: 6,
+                        message: "Password must be at least 6 characters",
+                      },
+                      maxLength: {
+                        value: 10,
+                        message: "Password cannot exceed 10 characters",
+                      },
                 })}
                 className="rounded-md font-abc w-80 text-base px-2 py-1 text-black"
               />
-              {errors.pwd && (
-                <p className="text-sm text-red-700 font-abc">
-                  Please enter your password
-                </p>
-              )}
+              {errors.password && (
+                    <p className="text-sm text-red-700 font-abc">
+                      {errors.password.message}
+                    </p>
+                  )}
             </div>
             <div className="flex justify-between">
               <a
-                href="/"
+                href="/forgotPassword"
                 className="block text-base mb-1 font-abc font-semibold hover:underline mt-3"
               >
                 Forgot Password?

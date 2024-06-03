@@ -23,8 +23,8 @@ const Signup = () => {
   } = useForm();
 
   const allFields = watch([
-    "frstname",
-    "lstname",
+    "firstname",
+    "lastname",
     "number",
     "dob",
     "gender",
@@ -32,7 +32,8 @@ const Signup = () => {
     "city",
     "email",
     "password",
-    "confirmPassword"
+    "confirmPassword",
+    "checkbox"
   ]);
 
   const [selectedDate, setSelectedDate] = useState(null);
@@ -70,10 +71,12 @@ const Signup = () => {
   };
 
   useEffect(() => {
-    const isAllFieldsFilled = allFields.every(field => field && field.trim() !== '');
+    console.log(allFields);
+    const isAllFieldsFilled = allFields.every(field => field && field !== '');
     const passwordsMatch = allFields[8] === allFields[9];
     setIsFormValid(isAllFieldsFilled);
-  }, [allFields]);
+    
+  }, [allFields, setIsFormValid]);
   
 
   return (
@@ -88,19 +91,27 @@ const Signup = () => {
             </h1>
             <div className="grid grid-cols-2">
               <div className="mt-3">
-                <label htmlFor="frstname" className="block text-base font-abc">
+                <label htmlFor="firstname" className="block text-base font-abc">
                   First Name
                 </label>
                 <input
                   type="text"
-                  id="frstname"
+                  id="firstname"
                   placeholder="Enter First Name"
-                  {...register("frstname", { required: true, minLength: 3 })}
+                  {...register("firstname", { required: true, minLength:{
+                    value: 3,
+                    message: "Minimum 3 characters required"
+                  },
+                  maxLength: {
+                    value: 10,
+                    message: "Maximum 10 characters required"
+                  }
+                })}
                   className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
                 />
-                {errors.frstname && (
+                {errors.firstname && (
                   <p className="text-sm text-red-700 font-abc">
-                    Please enter your First Name
+                    {errors.firstname.message}
                   </p>
                 )}
               </div>
@@ -110,14 +121,22 @@ const Signup = () => {
                 </label>
                 <input
                   type="text"
-                  id="lstname"
+                  id="lastname"
                   placeholder="Enter Last Name"
-                  {...register("lstname", { required: true, minLength: 3 })}
+                  {...register("lastname", { required: true, minLength:{
+                    value: 3,
+                    message: "Minimum 3 characters required"
+                  },
+                  maxLength: {
+                    value: 10,
+                    message: "Maximum 10 characters required"
+                  }
+                })}
                   className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
                 />
-                {errors.lstname && (
+                {errors.lastname && (
                   <p className="text-sm text-red-700 font-abc">
-                    Please enter your Last Name
+                    {errors.lastname.message}
                   </p>
                 )}
               </div>
@@ -131,14 +150,17 @@ const Signup = () => {
                   placeholder="Enter your contact number"
                   {...register("number", {
                     required: true,
-                    minLength: 10,
+                    minLength: {
+                      value : 10,
+                      message: "Please enter 10 digit phone number"
+                    },
                     maxLength: 15,
                   })}
                   className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
                 />
                 {errors.number && (
                   <p className="text-sm text-red-700 font-abc">
-                    Phone number must be between 10 and 15 digits
+                    {errors.number.message}
                   </p>
                 )}
               </div>
@@ -167,7 +189,7 @@ const Signup = () => {
                   <input
                     type="radio"
                     name="gender"
-                    value="male"
+                    value="Male"
                     {...register("gender", { required: true })}
                   />
                   <label htmlFor="gender" className="text-base font-abc mx-3">
@@ -176,7 +198,7 @@ const Signup = () => {
                   <input
                     type="radio"
                     name="gender"
-                    value="female"
+                    value="Female"
                     {...register("gender", { required: true })}
                   />
                   <label htmlFor="gender" className="text-base font-abc mx-3">
@@ -185,7 +207,7 @@ const Signup = () => {
                   <input
                     type="radio"
                     name="gender"
-                    value="other"
+                    value="Other"
                     {...register("gender", { required: true })}
                   />
                   <label htmlFor="gender" className="text-base font-abc mx-3">
@@ -263,16 +285,19 @@ const Signup = () => {
                   id="email"
                   placeholder="Enter your email"
                   {...register("email", {
-                    required: true,
-                    pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    required: "Please enter your email",
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "Invalid email address",
+                    },
                   })}
                   className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
                 />
                 {errors.email && (
-                  <p className="text-sm text-red-700 font-abc">
-                    Please enter your email
-                  </p>
-                )}
+                    <p className="text-sm text-red-700 font-abc">
+                      {errors.email.message}
+                    </p>
+                  )}
               </div>
               <div className="mt-3">
                 <label htmlFor="pwd" className="block text-base font-abc">
@@ -282,14 +307,24 @@ const Signup = () => {
                   type="password"
                   id="pwd"
                   placeholder="Enter your password"
-                  {...register("password", { required: true })}
+                  {...register("password", {
+                    required: "Please enter your password",
+                    minLength: {
+                      value: 6,
+                      message: "Password must be at least 6 characters",
+                    },
+                    maxLength: {
+                      value: 10,
+                      message: "Password cannot exceed 10 characters",
+                    },
+                  })}
                   className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
                 />
-                {errors.pwd && (
-                  <p className="text-sm text-red-700 font-abc">
-                    Please enter your password
-                  </p>
-                )}
+                {errors.password && (
+                    <p className="text-sm text-red-700 font-abc">
+                      {errors.password.message}
+                    </p>
+                  )}
               </div>
               <div className="mt-3">
                 <label htmlFor="cnfpwd" className="block text-base font-abc">
@@ -314,9 +349,9 @@ const Signup = () => {
             </div>
             <div className="mt-3">
               <span className="block text-base font-abc font-semibold">
-                <input type="checkbox" id="chkbox" {...register ('chkbox', {required: true})}/> Accept all the terms and conditions
+                <input type="checkbox" id="checkbox" {...register ('checkbox', {required: true})}/> Accept all the terms and conditions
               </span>
-              {errors.chkbox && (
+              {errors.checkbox && (
                 <p className="text-sm text-red-700 font-abc">
                 Please tick in checkbox
               </p>

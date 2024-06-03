@@ -7,6 +7,7 @@ import Signup from "./authorization/Signup";
 import Signin from "./authorization/Signin";
 import Dashboard from "./components/Dashboard";
 import Protected from "./components/Protected";
+import ForgotPassword from "./authorization/ForgotPassword";
 
 function App() {
   return (
@@ -14,14 +15,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/forgotPassword" element={<ForgotPassword />} />
       </Routes>
-      <Layout>
         <Routes>
           <Route element={<Protected />}>
-            <Route element={<Dashboard />} path="/dashboard" exact />
+            <Route element={<Layout><Dashboard /></Layout>} path="/dashboard" exact />
           </Route>
         </Routes>
-      </Layout>
     </Router>
   );
 }

@@ -2,8 +2,8 @@
   "user": [
     {
       "id": "8764",
-      "frstname": "Vedansh",
-      "lstname": "Verma",
+      "firstname": "Vedansh",
+      "lastname": "Verma",
       "number": "7878797978",
       "dob": "1996-06-25",
       "gender": "male",
@@ -16,8 +16,8 @@
     },
     {
       "id": "87c9",
-      "frstname": "Vedika",
-      "lstname": "Sharma",
+      "firstname": "Vedika",
+      "lastname": "Sharma",
       "number": "7897987897",
       "dob": "1997-05-14",
       "gender": "female",
@@ -30,8 +30,8 @@
     },
     {
       "id": "5695",
-      "frstname": "Harshit",
-      "lstname": "Verma",
+      "firstname": "Harshit",
+      "lastname": "Verma",
       "number": "7987104522",
       "dob": "1995-11-14",
       "gender": "male",
@@ -41,6 +41,89 @@
       "confirmPassword": "Harshit@mywork14",
       "chkbox": true,
       "city": "Ujjain"
+    },
+    {
+      "id": "8bab",
+      "firstname": "Ankur",
+      "lastname": "Jain",
+      "number": "7415154874",
+      "dob": "1992-07-15",
+      "gender": "male",
+      "state": "Andhra Pradesh",
+      "email": "ankur112@gmail.com",
+      "password": "ankur1",
+      "confirmPassword": "ankur1",
+      "chkbox": true,
+      "city": "Anantapur"
+    },
+    {
+      "id": "cfb4",
+      "firstname": "Shubham",
+      "lastname": "Sharma",
+      "number": "7415151478",
+      "dob": "1996-12-12",
+      "gender": "male",
+      "state": "Jharkhand",
+      "email": "shubham110@gmail.com",
+      "password": "shubham1",
+      "confirmPassword": "shubham1",
+      "chkbox": true,
+      "city": "Giridih"
+    },
+    {
+      "id": "f1a1",
+      "firstname": "Aman",
+      "lastname": "Kumar",
+      "number": "8545854585",
+      "dob": "1994-06-25",
+      "gender": "Male",
+      "state": "Kerala",
+      "email": "aman19@gmail.com",
+      "password": "aman14",
+      "confirmPassword": "aman14",
+      "city": "Alappuzha"
+    },
+    {
+      "id": "5aa1",
+      "firstname": "Akshita",
+      "lastname": "Goel",
+      "number": "7879787978",
+      "dob": "1985-06-25",
+      "gender": "Female",
+      "state": "Mizoram",
+      "email": "akshita119@gmail.com",
+      "password": "akshita16",
+      "confirmPassword": "akshita16",
+      "checkbox": true,
+      "city": "Lunglei"
+    },
+    {
+      "id": "3456",
+      "firstname": "Akshita",
+      "lastname": "Goel",
+      "number": "7879787978",
+      "dob": "1995-05-16",
+      "gender": "Male",
+      "state": "Andhra Pradesh",
+      "email": "akshita119@gmail.com",
+      "password": "akshita16",
+      "confirmPassword": "akshita16",
+      "checkbox": true,
+      "city": "Machilipatnam"
+    },
+    {
+      "id": "28e9",
+      "firstname": "Akshay",
+      "lastname": "Rathore",
+      "number": "7415334646",
+      "dob": "1985-06-29",
+      "gender": "Male",
+      "state": "Maharashtra",
+      "email": "akshay.kumar@gmail.com",
+      "password": "akshay14",
+      "confirmPassword": "akshay14",
+      "checkbox": true,
+      "city": "Pune"
     }
   ]
 }
