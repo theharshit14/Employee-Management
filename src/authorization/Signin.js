@@ -16,7 +16,7 @@ const Signin = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     authService
       .signin(data)
       .then((response) => {
