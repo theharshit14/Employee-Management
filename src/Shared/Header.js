@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
+// import Blogs from './Blogs';
+// import Profile from './Profile';
 
 const Header = () => {
   return (
-    <div className='text-center font-abc bg-blue-950 text-white'>
-      <h1>This is Header</h1>
+    <div className='font-abc bg-blue-950 text-white'>
+      <ul className='flex py-3'>
+        <li className='px-4'><a href='/blogs.js'>Blogs</a></li>
+        <li className='px-4'><a href='/profile.js'>Profile</a></li>
+      </ul>
     </div>
   )
 }

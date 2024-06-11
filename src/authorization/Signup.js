@@ -56,6 +56,8 @@ const Signup = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+    delete data.confirmPassword;
+
       authService.postSignup(data).then((response)=>{
         toast.success("Account created successfully!", {
           position: "bottom-right",

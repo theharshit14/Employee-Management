@@ -124,6 +124,33 @@
       "confirmPassword": "akshay14",
       "checkbox": true,
       "city": "Pune"
+    },
+    {
+      "id": "c710",
+      "firstname": "Tanya",
+      "lastname": "Parmar",
+      "number": "7415337379",
+      "dob": "1995-11-25",
+      "gender": "Female",
+      "state": "Madhya Pradesh",
+      "email": "tanya115@gmail.com",
+      "password": "tanya@25",
+      "confirmPassword": "tanya@25",
+      "checkbox": true,
+      "city": "Bhopal"
+    },
+    {
+      "id": "adb0",
+      "firstname": "Somya",
+      "lastname": "Juneja",
+      "number": "7418524521",
+      "dob": "1996-02-15",
+      "gender": "Female",
+      "state": "Andhra Pradesh",
+      "email": "somya.juneja789@gmail.com",
+      "password": "somya@121",
+      "checkbox": true,
+      "city": "Ongole"
     }
   ]
 }

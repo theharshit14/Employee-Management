@@ -85,7 +85,7 @@ const Dashboard = () => {
           placeholder="Search data here..."
         ></input>
       </div>
-      <div className="mt-2 font-abc">
+      <div className="mt-2 font-abc text-lg">
         <DataTable
           columns={columns}
           data={records}
