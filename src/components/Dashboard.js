@@ -67,32 +67,35 @@ const Dashboard = () => {
   const [records, setRecords] = useState();
 
   const handleFilter = (e) => {
-      const newData = users.filter((row) => {
-          return row.fullname.toLowerCase().includes(e.target.value.toLowerCase());
-      })
-      setRecords(newData)
-  }
+    const newData = users.filter((row) => {
+      return row.fullname.toLowerCase().includes(e.target.value.toLowerCase());
+    });
+    setRecords(newData);
+  };
 
   return (
     <>
-      <div className="text-center font-medium font-abc text-4xl p-10">
-        <h1>Employee Management Portal</h1>
-      </div>
-      <div className="text-end">
-        <input
-          className="border border-blue-950 rounded mr-5 font-abc h-8 w-60 pl-2"
-          type="text" onChange={handleFilter}
-          placeholder="Search data here..."
-        ></input>
-      </div>
-      <div className="mt-2 font-abc text-lg">
-        <DataTable
-          columns={columns}
-          data={records}
-          pagination
-          fixedHeader
-          highlightOnHover
-        ></DataTable>
+      <div className="bg-green-200">
+        <div className="text-center font-medium font-abc text-4xl p-10">
+          <h1>Employee Management Portal</h1>
+        </div>
+        <div className="text-end">
+          <input
+            className="border border-blue-950 rounded mr-5 font-abc h-8 w-60 pl-2"
+            type="text"
+            onChange={handleFilter}
+            placeholder="Search data here..."
+          ></input>
+        </div>
+        <div className="mt-2 font-abc text-lg">
+          <DataTable
+            columns={columns}
+            data={records}
+            pagination
+            fixedHeader
+            highlightOnHover
+          ></DataTable>
+        </div>
       </div>
     </>
   );

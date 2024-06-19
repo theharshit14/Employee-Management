@@ -1,6 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import authService from "../service/auth";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
   const {
@@ -10,14 +13,35 @@ const ForgotPassword = () => {
     formState: { errors },
   } = useForm();
 
+  const navigate = useNavigate();
+
   const onSubmit = (data) => {
     console.log(data);
     authService.signin(data).then((response)=> {
-      console.log('Password changed', response.data);
+      let updatePassword = response.data[0];
+      updatePassword.password = data.password;
+      console.log('Password changed', updatePassword);
+
+      authService.forgotPassword(updatePassword.id, updatePassword).then((response)=>{
+        console.log('Password Updated', response.data);
+      })
+      .catch((error)=>{
+        console.log('Password not updated', error);
+      })
     })
+
     .catch((error)=>{
       console.log('Password not changed', error);
     })
+
+    toast.success("Password Changed Successfully!", {
+      position: "bottom-right",
+      autoClose: 3000,
+    })
+
+    setTimeout(()=>{
+      navigate("/");
+    }, 3000)
   };
 
   const password = watch("password");
@@ -110,6 +134,7 @@ const ForgotPassword = () => {
                   Submit
                 </button>
               </div>
+              <ToastContainer />
             </div>
           </div>
         </div>

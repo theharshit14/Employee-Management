@@ -19,6 +19,10 @@
     background-color: var(--primary-color);
   }
 
+  .main-space {
+    background-color: var(--background-color);
+  }
+
   .my-button {
     background-color: var(--text-color);
     color: var(--background-color);
@@ -27,4 +31,16 @@
   .reset-button {
     background-color: var(--text-color);
     color: var(--background-color);
+  }
+
+  .header {
+    background-color: #090523;
+  }
+
+  .footer {
+    background-color: #090523;
+  }
+  .like-button {
+    background-color: var(--primary-color);
+    color: var(--text-color);
   }

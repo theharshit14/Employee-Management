@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -8,6 +7,8 @@ import Signin from "./authorization/Signin";
 import Dashboard from "./components/Dashboard";
 import Protected from "./components/Protected";
 import ForgotPassword from "./authorization/ForgotPassword";
+import Blogs from "./Shared/Blogs";
+import Profile from "./Shared/Profile";
 
 function App() {
   return (
@@ -16,12 +17,18 @@ function App() {
         <Route path="/" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
+        <Route
+          element={
+            <Layout>
+              <Protected />
+            </Layout>
+          }
+        >
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/profile" element={<Profile />} />
+        </Route>
       </Routes>
-        <Routes>
-          <Route element={<Protected />}>
-            <Route element={<Layout><Dashboard /></Layout>} path="/dashboard" exact />
-          </Route>
-        </Routes>
     </Router>
   );
 }

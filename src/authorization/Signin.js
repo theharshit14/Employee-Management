@@ -34,12 +34,10 @@ const Signin = () => {
           });
           return;
         }
-
         toast.success("LoggedIn Successfully!", {
           position: "bottom-right",
           autoClose: 3000,
         })
-          
         sessionStorage.setItem("userData", JSON.stringify(response.data[0]));
 
         setTimeout(()=>{

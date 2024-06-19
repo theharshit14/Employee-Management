@@ -1,5 +1,5 @@
 {
-  "user": [
+  "users": [
     {
       "id": "8764",
       "firstname": "Vedansh",
@@ -23,7 +23,7 @@
       "gender": "female",
       "state": "Rajasthan",
       "email": "vedika110@gmail.com",
-      "password": "vedika09",
+      "password": "vedika8585",
       "confirmPassword": "vedika09",
       "chkbox": true,
       "city": "Bhilwara"
@@ -37,8 +37,7 @@
       "gender": "male",
       "state": "Madhya Pradesh",
       "email": "harshit2verma@gmail.com",
-      "password": "Harsh14",
-      "confirmPassword": "Harshit@mywork14",
+      "password": "harshu2525",
       "chkbox": true,
       "city": "Ujjain"
     },
@@ -134,7 +133,7 @@
       "gender": "Female",
       "state": "Madhya Pradesh",
       "email": "tanya115@gmail.com",
-      "password": "tanya@25",
+      "password": "tanya8585",
       "confirmPassword": "tanya@25",
       "checkbox": true,
       "city": "Bhopal"
