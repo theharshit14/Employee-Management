@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { State_City_data } from "../constants/Stateandcitylist";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import authService from "../service/auth";
-import '../App.css';
-
+import "../App.css";
 
 const Signup = () => {
   const [state, setState] = useState([]);
@@ -33,7 +32,7 @@ const Signup = () => {
     "email",
     "password",
     "confirmPassword",
-    "checkbox"
+    "checkbox",
   ]);
 
   const [selectedDate, setSelectedDate] = useState(null);
@@ -58,28 +57,29 @@ const Signup = () => {
     console.log(data);
     delete data.confirmPassword;
 
-      authService.postSignup(data).then((response)=>{
+    authService
+      .postSignup(data)
+      .then((response) => {
         toast.success("Account created successfully!", {
           position: "bottom-right",
           autoClose: 3000,
         });
-        setTimeout(()=>{
-          navigate("/")
+        setTimeout(() => {
+          navigate("/");
         }, 3000);
         console.log(response);
-      }).catch((error)=>{
-        console.log('APIerror', error);
       })
+      .catch((error) => {
+        console.log("APIerror", error);
+      });
   };
 
   useEffect(() => {
     console.log(allFields);
-    const isAllFieldsFilled = allFields.every(field => field && field !== '');
+    const isAllFieldsFilled = allFields.every((field) => field && field !== "");
     const passwordsMatch = allFields[8] === allFields[9];
     setIsFormValid(isAllFieldsFilled);
-    
   }, [allFields, setIsFormValid]);
-  
 
   return (
     <>
@@ -100,15 +100,17 @@ const Signup = () => {
                   type="text"
                   id="firstname"
                   placeholder="Enter First Name"
-                  {...register("firstname", { required: true, minLength:{
-                    value: 3,
-                    message: "Minimum 3 characters required"
-                  },
-                  maxLength: {
-                    value: 10,
-                    message: "Maximum 10 characters required"
-                  }
-                })}
+                  {...register("firstname", {
+                    required: true,
+                    minLength: {
+                      value: 3,
+                      message: "Minimum 3 characters required",
+                    },
+                    maxLength: {
+                      value: 10,
+                      message: "Maximum 10 characters required",
+                    },
+                  })}
                   className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
                 />
                 {errors.firstname && (
@@ -125,15 +127,17 @@ const Signup = () => {
                   type="text"
                   id="lastname"
                   placeholder="Enter Last Name"
-                  {...register("lastname", { required: true, minLength:{
-                    value: 3,
-                    message: "Minimum 3 characters required"
-                  },
-                  maxLength: {
-                    value: 10,
-                    message: "Maximum 10 characters required"
-                  }
-                })}
+                  {...register("lastname", {
+                    required: true,
+                    minLength: {
+                      value: 3,
+                      message: "Minimum 3 characters required",
+                    },
+                    maxLength: {
+                      value: 10,
+                      message: "Maximum 10 characters required",
+                    },
+                  })}
                   className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
                 />
                 {errors.lastname && (
@@ -153,8 +157,8 @@ const Signup = () => {
                   {...register("number", {
                     required: true,
                     minLength: {
-                      value : 10,
-                      message: "Please enter 10 digit phone number"
+                      value: 10,
+                      message: "Please enter 10 digit phone number",
                     },
                     maxLength: 15,
                   })}
@@ -249,35 +253,35 @@ const Signup = () => {
                   </p>
                 )}
               </div>
-              {city.length > 0 && 
+              {city.length > 0 && (
                 <div className="mt-3">
-                <label htmlFor="city" className="block text-base font-abc">
-                  City:
-                </label>
-                <select
-                  name="city"
-                  id="city"
-                  {...register("city", { required: true })}
-                  className="rounded-md font-abc w-72 text-base px-2 py-1.5 text-black"
-                >
-                  {city.map((item) => (
-                    <option
-                      value={item}
-                      key={item}
-                      className="block text-base font-abc text-black"
-                    >
-                      {item}
-                    </option>
-                  ))}
-                </select>
-                {errors.city && (
-                  <p className="text-sm text-red-700 font-abc">
-                    Please select your city
-                  </p>
-                )}
-              </div>
-              }
-              
+                  <label htmlFor="city" className="block text-base font-abc">
+                    City:
+                  </label>
+                  <select
+                    name="city"
+                    id="city"
+                    {...register("city", { required: true })}
+                    className="rounded-md font-abc w-72 text-base px-2 py-1.5 text-black"
+                  >
+                    {city.map((item) => (
+                      <option
+                        value={item}
+                        key={item}
+                        className="block text-base font-abc text-black"
+                      >
+                        {item}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.city && (
+                    <p className="text-sm text-red-700 font-abc">
+                      Please select your city
+                    </p>
+                  )}
+                </div>
+              )}
+
               <div className="mt-3">
                 <label htmlFor="email" className="block text-base font-abc">
                   Email
@@ -296,10 +300,10 @@ const Signup = () => {
                   className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
                 />
                 {errors.email && (
-                    <p className="text-sm text-red-700 font-abc">
-                      {errors.email.message}
-                    </p>
-                  )}
+                  <p className="text-sm text-red-700 font-abc">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
               <div className="mt-3">
                 <label htmlFor="pwd" className="block text-base font-abc">
@@ -323,10 +327,10 @@ const Signup = () => {
                   className="rounded-md font-abc w-72 text-base px-2 py-1 text-black"
                 />
                 {errors.password && (
-                    <p className="text-sm text-red-700 font-abc">
-                      {errors.password.message}
-                    </p>
-                  )}
+                  <p className="text-sm text-red-700 font-abc">
+                    {errors.password.message}
+                  </p>
+                )}
               </div>
               <div className="mt-3">
                 <label htmlFor="cnfpwd" className="block text-base font-abc">
@@ -351,25 +355,32 @@ const Signup = () => {
             </div>
             <div className="mt-3">
               <span className="block text-base font-abc font-semibold">
-                <input type="checkbox" id="checkbox" {...register ('checkbox', {required: true})}/> Accept all the terms and conditions
+                <input
+                  type="checkbox"
+                  id="checkbox"
+                  {...register("checkbox", { required: true })}
+                />{" "}
+                Accept all the terms and conditions
               </span>
               {errors.checkbox && (
                 <p className="text-sm text-red-700 font-abc">
-                Please tick in checkbox
-              </p>
+                  Please tick in checkbox
+                </p>
               )}
             </div>
             <div className="text-center">
               <button
                 type="submit"
                 disabled={!isFormValid}
-                className= {`mt-3 p-2 font-abc ${!isFormValid ? 'disabled:opacity-50' : '' } my-button rounded-md text-sm`}
+                className={`mt-3 p-2 font-abc ${
+                  !isFormValid ? "disabled:opacity-50" : ""
+                } relative px-5 py-2 isolation-auto z-10 border-2 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-[#10123e] before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-medium text-black bg-white border-blue-950 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none`}
               >
                 Submit
               </button>
               <button
                 type="reset"
-                className="mt-3 mx-2 p-2 font-abc reset-button rounded-md text-sm"
+                className="mt-3 mx-2 p-2 font-abc relative px-5 py-2 isolation-auto z-10 border-2 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-[#10123e] before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-medium text-black bg-white border-blue-950 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
               >
                 Reset
               </button>

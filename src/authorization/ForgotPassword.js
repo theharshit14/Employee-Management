@@ -129,7 +129,7 @@ const ForgotPassword = () => {
               <div className="text-center">
                 <button
                   type="submit"
-                  className="mt-3 p-2 font-abc my-button rounded-md text-sm"
+                  className="mt-3 p-2 font-abc mx-2 relative px-5 py-2 isolation-auto z-10 border-2 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-[#10123e] before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-medium text-black bg-white border-blue-950 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
                 >
                   Submit
                 </button>

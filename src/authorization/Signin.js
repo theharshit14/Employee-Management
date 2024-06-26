@@ -37,13 +37,12 @@ const Signin = () => {
         toast.success("LoggedIn Successfully!", {
           position: "bottom-right",
           autoClose: 3000,
-        })
+        });
         sessionStorage.setItem("userData", JSON.stringify(response.data[0]));
 
-        setTimeout(()=>{
+        setTimeout(() => {
           navigate("/dashboard");
-        }, 3000)
-
+        }, 3000);
       })
       .catch((error) => {
         console.log("login error", error);
@@ -77,10 +76,10 @@ const Signin = () => {
                 required
               />
               {errors.email && (
-                    <p className="text-sm text-red-700 font-abc">
-                      {errors.email.message}
-                    </p>
-                  )}
+                <p className="text-sm text-red-700 font-abc">
+                  {errors.email.message}
+                </p>
+              )}
             </div>
             <div className="mt-3">
               <label htmlFor="pwd" className="block text-base font-abc">
@@ -92,22 +91,22 @@ const Signin = () => {
                 placeholder="Enter your password"
                 {...register("password", {
                   required: "Please enter your password",
-                      minLength: {
-                        value: 6,
-                        message: "Password must be at least 6 characters",
-                      },
-                      maxLength: {
-                        value: 10,
-                        message: "Password cannot exceed 10 characters",
-                      },
+                  minLength: {
+                    value: 6,
+                    message: "Password must be at least 6 characters",
+                  },
+                  maxLength: {
+                    value: 10,
+                    message: "Password cannot exceed 10 characters",
+                  },
                 })}
                 className="rounded-md font-abc w-80 text-base px-2 py-1 text-black"
               />
               {errors.password && (
-                    <p className="text-sm text-red-700 font-abc">
-                      {errors.password.message}
-                    </p>
-                  )}
+                <p className="text-sm text-red-700 font-abc">
+                  {errors.password.message}
+                </p>
+              )}
             </div>
             <div className="flex justify-between">
               <a
@@ -127,7 +126,7 @@ const Signin = () => {
             <div className="text-center">
               <button
                 type="submit"
-                className="mt-3 p-2 font-abc my-button rounded-md text-sm"
+                className="mt-3 mx-2 p-2 font-abc relative px-5 py-2 isolation-auto z-10 border-2 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full hover:text-white before:-right-full before:hover:right-0 before:rounded-full before:bg-[#10123e] before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700 inline-flex items-center justify-center text-sm font-medium text-black bg-white border-blue-950 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
               >
                 Submit
               </button>
