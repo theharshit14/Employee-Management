@@ -37,7 +37,7 @@
       "gender": "male",
       "state": "Madhya Pradesh",
       "email": "harshit2verma@gmail.com",
-      "password": "harshu2525",
+      "password": "Harshu14",
       "chkbox": true,
       "city": "Ujjain"
     },
@@ -151,5 +151,6 @@
       "checkbox": true,
       "city": "Ongole"
     }
-  ]
+  ],
+  "blogs": []
 }

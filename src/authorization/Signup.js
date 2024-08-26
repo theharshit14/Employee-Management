@@ -84,8 +84,6 @@ const Signup = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {/* <pre>{JSON.stringify(userInfo)}</pre> */}
-        {/* <pre>{console.log(errors)}</pre> */}
         <div className="main flex justify-center items-center h-screen text-brown">
           <div className="main-container w-1/2 p-6 shadow-xl rounded-md text-2xl">
             <h1 className="text-center text-4xl mb-3 font-medium font-abc">

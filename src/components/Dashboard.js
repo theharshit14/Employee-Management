@@ -11,7 +11,6 @@ const Dashboard = () => {
       console.log(userData.data);
       const modifiedData = userData.data.map((data) => {
         data.fullname = `${data.firstname} ${data.lastname}`;
-        // data.gender = data.gender[0].toUpperCase().remove(gender[0]).append('gender');
         return data;
       });
       console.log("Updated data", modifiedData);
